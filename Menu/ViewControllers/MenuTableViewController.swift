@@ -14,16 +14,26 @@ class MenuTableViewController: UITableViewController {
         super.viewDidLoad()
     }
 
-    // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView,
                             numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return menuItem.count
+    }
+    override func tableView(_ tableView: UITableView,
+    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MenuItemIdentifier", for: indexPath) as! MenuItemTableViewCell
+
+
+        let menu = menuItem[indexPath.row]
+        cell.configure(imageName: menu.imageName,
+                       name: menu.name,
+                       details: menu.detail,
+                       numberOfLikes: menu.numberOfLike)
+        return cell
     }
     
-
 }
+
