@@ -8,17 +8,21 @@
 
 import Foundation
 class MenuItem {
+    var id : Int
     var name : String
     var detail : String
     var imageName : String
-    var numberOfLike : Int
-    init (name: String,
+    var price : Int
+    var quantity : Int = 1
+    init (id: Int,
+          name: String,
           detail: String,
           imageName: String,
-          numberOfLike: Int){
+          price: Int){
+        self.id = id
         self.name = name
         self.detail = detail
         self.imageName = imageName
-        self.numberOfLike = numberOfLike
+        self.price = price
     }
 }

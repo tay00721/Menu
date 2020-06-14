@@ -17,8 +17,14 @@ class MenuItemTableViewCell: UITableViewCell {
     
     @IBOutlet weak var MenuDetail: UILabel!
     
-    
-    @IBOutlet weak var NumberOfLike: UILabel!
+    @IBOutlet weak var MenuPrice: UILabel!
+
+    var optionalMenuItem: MenuItem?
+    @IBAction func addToCart(_ sender: Any) {
+        guard let itemList = optionalMenuItem else {return}
+        shoppingCart.addToCart(items: itemList)
+      //  didItAddToCart()
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,12 +32,23 @@ class MenuItemTableViewCell: UITableViewCell {
     func configure(imageName: String,
                    name: String,
                    details: String,
-                   numberOfLikes: Int){
+                   prices: Int){
         MenuImageView.image = UIImage(named: imageName)
         MenuName.text = name
         MenuDetail.text = details
-        NumberOfLike.text = numberOfLikes.isItComma()
+        MenuPrice.text = "฿ \(prices.isItComma())"
     }
+    func setup(item: MenuItem){
+        self.optionalMenuItem = item
+    }
+    
+  //  func didItAddToCart() {
+    //    let alertController = UIAlertController(title: "Success", message: "This menu has been add to cart", preferredStyle: .alert)
+      //  let confirmAction = UIAlertAction(title: "Confirm", style: .cancel, handler: nil)
+        //alertController.addAction(confirmAction)
+        //present(alertController,animated: true,completion: nil)
+    //}
+
     
 }
 extension Int {
